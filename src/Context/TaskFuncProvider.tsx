@@ -8,7 +8,8 @@ interface FunctionProps {
 }
 const TaskF: TaskFunc = {
   task: TaskData,
-  Add: () => {}
+  Add: () => { },
+  Elim: () => {}
 }
 
 export const FunctionContext = createContext(TaskF)
@@ -18,8 +19,11 @@ function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
   function Addtask (task: TaskType): void {
     setTask([...TaskData, task])
   }
+  function EraseTask (id: number): void {
+    setTask(tarea.filter(element => element.id !== id))
+  }
   return (
-    <FunctionContext.Provider value={{ task: tarea, Add: Addtask }}>
+    <FunctionContext.Provider value={{ task: tarea, Add: Addtask, Elim: EraseTask }}>
       {children}
     </FunctionContext.Provider>
   )
