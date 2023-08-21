@@ -1,11 +1,11 @@
 import './App.css'
-import TaskCard from './Components/TaskCard'
-import Tareas from './Auxiliary/Data'
+
+import TaskList from './Components/TaskList'
 
 function App (): JSX.Element {
   return (
     <>
-<TaskCard tarea={Tareas[0]}/>
+<TaskList/>
     </>
   )
 }
