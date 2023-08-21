@@ -17,7 +17,7 @@ export const FunctionContext = createContext(TaskF)
 function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
   const [tarea, setTask] = useState(TaskData)
   function Addtask (task: TaskType): void {
-    setTask([...TaskData, task])
+    setTask([...tarea, task])
   }
   function EraseTask (id: number): void {
     setTask(tarea.filter(element => element.id !== id))

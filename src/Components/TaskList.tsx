@@ -1,11 +1,14 @@
-import TaskData from "../Auxiliary/Data"
 import TaskCard from "./TaskCard"
-const List = TaskData.map((card, index) => {
-  return (
-        <TaskCard task={card} key={index}/>
-  )
-})
+import { useContext } from 'react'
+import { FunctionContext } from "../Context/TaskFuncProvider"
+
 function TaskList (): JSX.Element {
+  const { task } = useContext(FunctionContext)
+  const List = task.map((card, index) => {
+    return (
+          <TaskCard task={card} key={index}/>
+    )
+  })
   return (<>{List}</>)
 }
 export default TaskList
