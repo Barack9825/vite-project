@@ -1,9 +1,9 @@
-import type Tarea from "../Auxiliary/Interfaces"
-function TaskCard ({ tarea }: { tarea: Tarea }): JSX.Element {
+import type Task from "../Auxiliary/Interfaces"
+function TaskCard ({ task }: { task: Task }): JSX.Element {
   return (
         <>
         <input type="checkbox"></input>
-        <p id={tarea.id.toString()}>{tarea.title}</p>
+        <p id={task.id.toString()}>{task.title}</p>
         <button>
             eliminar
             </button>

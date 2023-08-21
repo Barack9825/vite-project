@@ -1,8 +1,8 @@
-import Tareas from "../Auxiliary/Data"
+import TaskData from "../Auxiliary/Data"
 import TaskCard from "./TaskCard"
-const List = Tareas.map((task, index) => {
+const List = TaskData.map((card, index) => {
   return (
-        <TaskCard tarea={task} key={index}/>
+        <TaskCard task={card} key={index}/>
   )
 })
 function TaskList (): JSX.Element {

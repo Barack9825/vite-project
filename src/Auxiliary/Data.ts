@@ -1,5 +1,5 @@
-import type Tarea from './Interfaces'
-const Tareas: Tarea[] = [
+import type TaskType from './Interfaces'
+const TaskData: TaskType[] = [
   {
     id: 1,
     title: "comer",
@@ -17,4 +17,4 @@ const Tareas: Tarea[] = [
   }
 
 ]
-export default Tareas
+export default TaskData

@@ -1,7 +1,7 @@
-interface Tarea {
+interface TaskType {
   id: number
   title: string
   completed: boolean
 }
 
-export default Tarea
+export default TaskType
