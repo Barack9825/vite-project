@@ -8,8 +8,9 @@ interface FunctionProps {
 }
 const TaskF: TaskFunc = {
   task: TaskData,
-  Add: () => { },
+  Add: () => {},
   Elim: () => {}
+
 }
 
 export const FunctionContext = createContext(TaskF)
@@ -19,9 +20,11 @@ function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
   function Addtask (task: TaskType): void {
     setTask([...tarea, task])
   }
-  function EraseTask (id: number): void {
+  function EraseTask (id: number, nombre: string): void {
+    const confirmar = window.confirm("Esta seguro de que quiere eliminar la tarea " + nombre)
     setTask(tarea.filter(element => element.id !== id))
   }
+
   return (
     <FunctionContext.Provider value={{ task: tarea, Add: Addtask, Elim: EraseTask }}>
       {children}

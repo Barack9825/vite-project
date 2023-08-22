@@ -13,11 +13,7 @@ function TaskManager (): JSX.Element {
             <input type="text" name="entrada" id="enrada" placeholder="Ingrese una tarea nueva" onChange={(e) => { setTitle(e.target.value) }}/>
             <input type="text" name="Buscador" id="Buscador" placeholder="Buscar Tarea" />
             <input type="submit" value="Aceptar" />
-            <p>Filtro</p>
-            <div>
-              <p>Completada</p>
-              <p>No Completada</p>
-            </div>
+
         </form>
   )
 }
