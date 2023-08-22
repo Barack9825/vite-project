@@ -1,0 +1,8 @@
+button{
+    background-color: rgb(39, 37, 37);
+    color:white;
+    height: 50px;
+    border-radius: 30px;
+    border-color: white;
+    font-style: italic;
+}

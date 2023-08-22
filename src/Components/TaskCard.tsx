@@ -3,6 +3,8 @@ import { FunctionContext } from "../Context/TaskFuncProvider"
 import type TaskType from "../Auxiliary/Interfaces"
 import EntryTitleTask from './EntryTitleTask'
 import EditAceptButon from './EditAceptButton'
+import '../StyleSheets/TaskCard.css'
+import '../StyleSheets/Buttons.css'
 
 function TaskCard ({ card }: { card: TaskType }): JSX.Element {
   const { Elim, task } = useContext(FunctionContext)
@@ -13,7 +15,7 @@ function TaskCard ({ card }: { card: TaskType }): JSX.Element {
   })
 
   const [state, setState] = useState(true)
-  const [stateCheck, setStateCheck] = useState(false)
+
   const [value, setValue] = useState(card.title)
 
   function handleclick (): void {
@@ -32,14 +34,15 @@ function TaskCard ({ card }: { card: TaskType }): JSX.Element {
     card.completed = checkbox?.checked
   }
   return (
-        <>
-        <input  id={card.id.toString()} type="checkbox" onClick={() => { checkClick() }} ></input>
+        <div className='tarea-cont'>
+        <input className="check" id={card.id.toString()} name={"checkbox" + card.id} type="checkbox" onClick={() => { checkClick() }} ></input>
+        <label className="checklabel" htmlFor={"checkbox" + card.id}>Completed</label>
        <EntryTitleTask editing={state} title={card.title} handleChange={handleChange} />
         <button onClick={() => { Elim(card.id, card.title) }}>
             eliminar
             </button>
         <EditAceptButon state={state} handleclick={handleclick}/>
-        </>
+        </div>
   )
 }
 export default TaskCard

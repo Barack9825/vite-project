@@ -22,7 +22,9 @@ function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
   }
   function EraseTask (id: number, nombre: string): void {
     const confirmar = window.confirm("Esta seguro de que quiere eliminar la tarea " + nombre)
-    setTask(tarea.filter(element => element.id !== id))
+    if (confirmar) {
+      setTask(tarea.filter(element => element.id !== id))
+    }
   }
 
   return (
