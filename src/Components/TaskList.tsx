@@ -1,33 +1,58 @@
 import TaskCard from "./TaskCard"
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { FunctionContext } from "../Context/TaskFuncProvider"
 
 function TaskList (): JSX.Element {
   const { task } = useContext(FunctionContext)
   const [Lista, setLista] = useState(task)
+  const [state, SetState] = useState(0)
   const List = Lista.map((card, index) => {
+    /* const checkbox=document.getElementById() */
     return (
-          <TaskCard card={card} key={index}/>
+      <TaskCard card={card} key={index} />
 
     )
   })
-  /* useEffect(() => { setLista(task) }) */
+  useEffect(() => {
+    if (state === 0) {
+      setLista(task)
+    } else if (state === 1) {
+      setLista(task.filter(element => element.completed))
+    } else {
+      setLista(task.filter(element => !element.completed))
+    }
+  }, [state, task])
+
+  useEffect(() => {
+    const checkbox = document.getElementsByClassName("check") as HTMLCollectionOf<HTMLInputElement>
+    for (let i = 0; i < checkbox.length; i++) {
+      if (task.findIndex(obj => obj.id === Number(checkbox[i].id)) === -1) { continue }
+      checkbox[i].checked = task[task.findIndex(obj => obj.id === Number(checkbox[i].id))].completed
+    }
+  })
+
   function FiltrarCompletas (): void {
-    setLista(task.filter(task => task.completed))
+    SetState(1)
   }
   function FiltrarInCompletas (): void {
-    setLista(task.filter(task => !task.completed))
+    SetState(2)
   }
   function EliminarFiltro (): void {
-    setLista(task)
+    SetState(0)
   }
-  return (<>
-  <p>Filtro</p>
-            <div>
-              <p onClick={FiltrarCompletas}>Completada </p>
-              <p onClick={FiltrarInCompletas}>No Completada</p>
-              <p onClick={EliminarFiltro}>Todas</p>
-            </div>
-  {List}</>)
+  function Filter (filtro: string): void {
+    setLista(task.filter(element => element.title.includes(filtro)))
+  }
+  return (<div id="Tasklist-container">
+
+    <div id="list">{List}</div>
+    <div id="filtro-container"><p id="selector">Filtrar</p>
+    <div id="dropdown">
+      <p onClick={FiltrarCompletas} id="completada">Completada </p>
+      <p onClick={FiltrarInCompletas}id='no completada'>No Completada</p>
+      <p onClick={EliminarFiltro}>Todas</p>
+      <input type="text" name="Buscador" id="Buscador" placeholder="Buscar Tarea" onChange={(e) => { Filter(e.target.value) }}/>
+    </div></div>
+    </div>)
 }
 export default TaskList

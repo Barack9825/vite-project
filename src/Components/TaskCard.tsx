@@ -9,10 +9,9 @@ import '../StyleSheets/Buttons.css'
 function TaskCard ({ card }: { card: TaskType }): JSX.Element {
   const { Elim, task } = useContext(FunctionContext)
 
-  useEffect(() => {
-    const checkbox = document.getElementById(card.id.toString())
-    checkbox.checked = card.completed
-  })
+  useEffect(()=>{
+    task[task.indexOf(card)].completed=card.completed
+  },[card])
 
   const [state, setState] = useState(true)
 
@@ -29,13 +28,14 @@ function TaskCard ({ card }: { card: TaskType }): JSX.Element {
   function handleChange (e: React.ChangeEvent<HTMLInputElement>): void {
     setValue(e.target.value)
   }
-  function checkClick (): void {
-    const checkbox = document.getElementById(card.id.toString())
-    card.completed = checkbox?.checked
+  function checkClick (e: React.MouseEvent<HTMLInputElement,MouseEvent>): void {
+    const checkbox=e.target as HTMLInputElement 
+    card.completed=checkbox.checked
+    task[task.indexOf(card)].completed=card.completed
   }
   return (
         <div className='tarea-cont'>
-        <input className="check" id={card.id.toString()} name={"checkbox" + card.id} type="checkbox" onClick={() => { checkClick() }} ></input>
+        <input className="check" id={card.id.toString()} name={"checkbox" + card.id} type="checkbox" onClick={(e) => { checkClick(e) }} ></input>
         <label className="checklabel" htmlFor={"checkbox" + card.id}>Completed</label>
        <EntryTitleTask editing={state} title={card.title} handleChange={handleChange} />
         <button onClick={() => { Elim(card.id, card.title) }}>

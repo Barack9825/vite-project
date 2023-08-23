@@ -1,17 +1,17 @@
 import type TaskType from './Interfaces'
 const TaskData: TaskType[] = [
   {
-    id: 1,
+    id: 0,
     title: "comer",
     completed: false
   },
   {
-    id: 2,
+    id: 1,
     title: "tomar",
     completed: true
   },
   {
-    id: 3,
+    id: 2,
     title: "dormir",
     completed: false
   }

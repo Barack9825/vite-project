@@ -10,7 +10,6 @@ const TaskF: TaskFunc = {
   task: TaskData,
   Add: () => {},
   Elim: () => {}
-
 }
 
 export const FunctionContext = createContext(TaskF)
@@ -26,7 +25,6 @@ function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
       setTask(tarea.filter(element => element.id !== id))
     }
   }
-
   return (
     <FunctionContext.Provider value={{ task: tarea, Add: Addtask, Elim: EraseTask }}>
       {children}
