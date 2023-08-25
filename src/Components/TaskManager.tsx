@@ -10,9 +10,9 @@ function TaskManager (): JSX.Element {
     Add({ id: task.length, title, completed: false })
   }
   return (
-        <form onSubmit={ handleSubmit }>
-            <input type="text" name="entrada" id="entrada" placeholder="Ingrese una tarea nueva" onChange={(e) => { setTitle(e.target.value) }}/>
-            <input type="submit" value="Aceptar"id='submit' />
+        <form className='col-5'onSubmit={ handleSubmit }>
+            <input className='col-7'type="text" name="entrada" id="entrada" placeholder="Ingrese una tarea nueva" onChange={(e) => { setTitle(e.target.value) }}/>
+            <input className='col-2'type="submit" value="Aceptar"id='submit' />
 
         </form>
   )

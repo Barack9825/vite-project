@@ -1,6 +1,7 @@
 import TaskCard from "./TaskCard"
 import { useContext, useState, useEffect } from 'react'
 import { FunctionContext } from "../Context/TaskFuncProvider"
+import "../StyleSheets/TaskList.css"
 
 function TaskList (): JSX.Element {
   const { task } = useContext(FunctionContext)
@@ -43,16 +44,32 @@ function TaskList (): JSX.Element {
   function Filter (filtro: string): void {
     setLista(task.filter(element => element.title.includes(filtro)))
   }
-  return (<div id="Tasklist-container">
 
-    <div id="list">{List}</div>
-    <div id="filtro-container"><p id="selector">Filtrar</p>
-    <div id="dropdown">
-      <p onClick={FiltrarCompletas} id="completada">Completada </p>
-      <p onClick={FiltrarInCompletas}id='no completada'>No Completada</p>
-      <p onClick={EliminarFiltro}>Todas</p>
-      <input type="text" name="Buscador" id="Buscador" placeholder="Buscar Tarea" onChange={(e) => { Filter(e.target.value) }}/>
-    </div></div>
+  if (List.length !== 0) {
+    return (
+    <div id="Tasklist-container" className="col-11">
+
+      <div id="list">{List}</div>
+      <div id="filtro-container"><p id="selector">Filtrar</p>
+        <div id="dropdown">
+          <p onClick={FiltrarCompletas} id="completada">Completada </p>
+          <p onClick={FiltrarInCompletas} id='no completada'>No Completada</p>
+          <p onClick={EliminarFiltro}>Todas</p>
+          <input type="text" name="Buscador" id="Buscador" placeholder="Buscar Tarea" onChange={(e) => { Filter(e.target.value) }} />
+        </div></div>
     </div>)
+  } else {
+    return (<div id="Tasklist-container">
+
+    <div id="emptylist"><p></p></div>
+    <div id="filtro-container"><p id="selector">Filtrar</p>
+      <div id="dropdown">
+        <p onClick={FiltrarCompletas} id="completada">Completada </p>
+        <p onClick={FiltrarInCompletas} id='no completada'>No Completada</p>
+        <p onClick={EliminarFiltro}>Todas</p>
+        <input type="text" name="Buscador" id="Buscador" placeholder="Buscar Tarea" onChange={(e) => { Filter(e.target.value) }} />
+      </div></div>
+  </div>)
+  }
 }
 export default TaskList

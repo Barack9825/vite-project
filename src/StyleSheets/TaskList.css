@@ -1,0 +1,74 @@
+#emptylist{
+    width: 50%;
+}
+#list{
+    width: 50%;
+}
+#Tasklist-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    
+    
+    margin:auto;
+    margin-top:25px;
+}
+#Tasklist-container *{
+    margin-left: 15px;
+}
+
+#filtro-container{
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  display: inline-block;
+  /* left: 50px; */
+}
+
+#selector{
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 20px;
+    /* float:left    */ 
+   
+}
+
+@keyframes aparecer {
+    form{color:white}
+    to{color: wheat}
+}
+
+#dropdown{
+    display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+#dropdown p{
+    color:white;
+    font-weight:bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#dropdown input::placeholder{
+    font-style: italic;
+    color: rgb(143, 143, 143);
+}
+
+#filtro-container:hover #dropdown {
+    display: block;
+    animation-name: aparecer;
+    animation-duration: 3s;
+}
+
+#dropdown p:hover{  
+    cursor: pointer;
+    animation-name: aparecer;
+    animation-duration: 1s;
+    color: wheat;
+
+}
