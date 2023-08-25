@@ -32,6 +32,7 @@ const tareaService = {
       throw error
     }
   },
+
   DeleteTarea: async (id: number) => {
     try {
       const response = await axios.delete(`${API_URL}/tarea/${id}`)

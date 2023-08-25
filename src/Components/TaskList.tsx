@@ -7,20 +7,21 @@ function TaskList (): JSX.Element {
   const { task } = useContext(FunctionContext)
   const [Lista, setLista] = useState(task)
   const [state, SetState] = useState(0)
-  const List = Lista.map((card, index) => {
+  const List = Lista.map((tarea, index) => {
     /* const checkbox=document.getElementById() */
     return (
-      <TaskCard card={card} key={index} />
+      <TaskCard card={tarea} key={index} />
 
     )
   })
+
   useEffect(() => {
     if (state === 0) {
       setLista(task)
     } else if (state === 1) {
-      setLista(task.filter(element => element.completed))
+      setLista(task.filter(element => element.status))
     } else {
-      setLista(task.filter(element => !element.completed))
+      setLista(task.filter(element => !element.status))
     }
   }, [state, task])
 
@@ -28,7 +29,7 @@ function TaskList (): JSX.Element {
     const checkbox = document.getElementsByClassName("check") as HTMLCollectionOf<HTMLInputElement>
     for (let i = 0; i < checkbox.length; i++) {
       if (task.findIndex(obj => obj.id === Number(checkbox[i].id)) === -1) { continue }
-      checkbox[i].checked = task[task.findIndex(obj => obj.id === Number(checkbox[i].id))].completed
+      checkbox[i].checked = task[task.findIndex(obj => obj.id === Number(checkbox[i].id))].status
     }
   })
 
@@ -42,7 +43,7 @@ function TaskList (): JSX.Element {
     SetState(0)
   }
   function Filter (filtro: string): void {
-    setLista(task.filter(element => element.title.includes(filtro)))
+    setLista(task.filter(element => element.descripcion.includes(filtro)))
   }
 
   if (List.length !== 0) {

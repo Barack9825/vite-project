@@ -17,27 +17,35 @@ export const FunctionContext = createContext(TaskF)
 
 function TaskFuncProvider ({ children }: FunctionProps): JSX.Element {
   const [tarea, setTask] = useState(TaskData)
+
   useEffect(() => {
     async function fetchTareas (): Promise<void> {
       try {
         const tareasData = await tareaServices.getTareas()
         setTask(tareasData)
-        console.log(tarea)
       } catch (error) {
         console.log("qweqew")
       }
     }
     void fetchTareas()
   }, [])
+
   function Addtask (task: TaskType): void {
     setTask([...tarea, task])
   }
-  function EraseTask (id: number, nombre: string): void {
+
+  async function EraseTask (id: number, nombre: string): Promise<void> {
     const confirmar = window.confirm("Esta seguro de que quiere eliminar la tarea " + nombre)
+
     if (confirmar) {
-      setTask(tarea.filter(element => element.id !== id))
+      try {
+        await tareaServices.DeleteTarea(id)
+      } catch (error) {
+        console.log("qweqew")
+      }
     }
   }
+
   return (
     <FunctionContext.Provider value={{ task: tarea, Add: Addtask, Elim: EraseTask }}>
       {children}

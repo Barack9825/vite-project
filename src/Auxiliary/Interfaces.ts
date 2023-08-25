@@ -1,7 +1,9 @@
 interface TaskType {
   id: number
-  title: string
-  completed: boolean
+  descripcion: string
+  status: boolean
+  fechaCreacion: Date
+  fechaCompletada?: Date
 }
 
 export default TaskType
